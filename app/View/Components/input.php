@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 class input extends Component
 {
     public $type;
+    public $id;
     public $placeholder;
     public $icon;
     public $showIcon;
@@ -24,9 +25,10 @@ class input extends Component
      * @param bool $showIcon
      * @param string $name
      */
-    public function __construct($type = 'text', $placeholder = 'Enter text', $icon = 'fas fa-lock', $showIcon = true, $name = '',$required = true)
+    public function __construct($type = 'text',$id = '', $placeholder = 'Enter text', $icon = 'fas fa-lock', $showIcon = true, $name = '',$required = true)
     {
         $this->type = $type;
+        $this->id = $id;
         $this->placeholder = $placeholder;
         $this->icon = $icon;
         $this->showIcon = $showIcon;

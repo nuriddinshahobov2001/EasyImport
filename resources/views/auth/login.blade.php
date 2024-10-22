@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title')
+    Вход
+@endsection
 @section('css-links')
     <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
     <!-- icheck bootstrap -->
@@ -20,8 +23,8 @@
                 <x-alerts/>
                 <x-form method="POST" action="{{ route('login') }}" :multipart="false">
                     @csrf
-                    <x-input type="email" name="email" placeholder="Enter your Email" icon="fas fa-envelope" :showIcon="true" :required="true"/>
-                    <x-input type="password" name="password" placeholder="Enter your password" icon="fas fa-lock" :showIcon="true" :required="true"/>
+                    <x-input id="email" type="email" name="email" placeholder="Enter your Email" icon="fas fa-envelope" :showIcon="true" :required="true"/>
+                    <x-input id="password" type="password" name="password" placeholder="Enter your password" icon="fas fa-lock" :showIcon="true" :required="true"/>
                     <x-button type="submit" class="btn btn-primary" text="Вход" position="end"/>
                 </x-form>
             </div>
@@ -33,7 +36,7 @@
 @endsection
 
 
-@section('js-scripts')
+@section('js-links')
     <!-- jQuery -->
     <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->
