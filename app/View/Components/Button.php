@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use function Laravel\Prompts\text;
 
-class button extends Component
+class Button extends Component
 {
     public $type;
     public $class;

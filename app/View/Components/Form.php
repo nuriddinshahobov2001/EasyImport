@@ -3,7 +3,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class form extends Component
+class Form extends Component
 {
     public $method;
     public $action;

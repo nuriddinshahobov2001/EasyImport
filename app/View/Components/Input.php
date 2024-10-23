@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class input extends Component
+class Input extends Component
 {
     public $type;
     public $id;
@@ -15,17 +15,13 @@ class input extends Component
     public $showIcon;
     public $name;
     public $required;
+    public $label;
+    public $value;
+    public $disabled;
 
-    /**
-     * Конструктор компонента.
-     *
-     * @param string $type
-     * @param string $placeholder
-     * @param string $icon
-     * @param bool $showIcon
-     * @param string $name
-     */
-    public function __construct($type = 'text',$id = '', $placeholder = 'Enter text', $icon = 'fas fa-lock', $showIcon = true, $name = '',$required = true)
+
+
+    public function __construct($type = 'text',$value = '',$disabled=true,$id = '', $placeholder = 'Enter text', $icon = 'fas fa-lock', $showIcon = true, $name = '',$required = true, $label='')
     {
         $this->type = $type;
         $this->id = $id;
@@ -34,6 +30,9 @@ class input extends Component
         $this->showIcon = $showIcon;
         $this->name = $name;
         $this->required = $required;
+        $this->label = $label;
+        $this->value = $value;
+        $this->disabled = $disabled;
     }
 
     public function render()

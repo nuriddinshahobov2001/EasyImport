@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+
     protected $fillable = [
         'name',
         'email',
@@ -23,15 +25,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function roles()
-    {
-        return $this->belongsToMany(RoleModel::class, 'role_users_models', 'user_id', 'role_id');
-    }
-
-
-    // Проверка, имеет ли пользователь определенную роль
-    public function hasRole($role)
-    {
-        return $this->roles()->where('name', $role)->exists();
-    }
 }

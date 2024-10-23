@@ -1,5 +1,12 @@
-<div class="input-group mb-3">
-    <input id="{{ $id }}" type="{{ $type }}" name="{{ $name }}" class="form-control" placeholder="{{ $placeholder }}" required="{{ $required }}">
+<div class="{{ $label != null ? 'form-group' : 'input-group' }} mb-3">
+    @if($label != null)
+        <label for="{{ $id }}">{{ $label }}</label>
+    @endif
+    <input id="{{ $id }}" type="{{ $type }}" value="{{ $value }}" name="{{ $name }}" class="form-control"
+           @if($disabled) disabled @endif
+           placeholder="{{ $placeholder }}"
+           @if($required) required @endif
+    >
 
     @if($showIcon)
         <div class="input-group-append">
