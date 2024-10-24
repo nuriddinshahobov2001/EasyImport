@@ -68,7 +68,9 @@ class AuthorsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $authors = AuthorModel::all();
+        $edit = AuthorModel::findOrFail($id);
+        return view('admin.product.author.index', compact('authors', 'edit'));
     }
 
     /**

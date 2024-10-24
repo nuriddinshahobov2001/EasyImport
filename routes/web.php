@@ -63,6 +63,7 @@ Route::middleware(['role:admin'])->group(function () {
         Route::post('/author/store', [AuthorsController::class, 'store'])->name('store');
         Route::get('/author/show/{id}', [AuthorsController::class, 'show'])->name('show');
         Route::get('/author/edit/{id}', [AuthorsController::class, 'edit'])->name('edit');
+        Route::patch('/author/update/{id}', [AuthorsController::class, 'update'])->name('update');
         Route::delete('/author/edit/{id}', [AuthorsController::class, 'destroy'])->name('delete');
     });
 

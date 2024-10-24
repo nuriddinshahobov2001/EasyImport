@@ -1,0 +1,47 @@
+<h1 class="mb-3">Редактировать автора</h1>
+<x-form action="{{ route('author.update', $edit->id) }}" :multipart="true">
+    @csrf
+    @method('PATCH')
+
+    <!-- Имя автора -->
+    <x-input
+        label="Имя автора"
+        id="name"
+        type="text"
+        name="name"
+        placeholder="Введите имя автора"
+        icon="fas fa-envelope"
+        :showIcon="false"
+        :required="true"
+        :value="$edit->name"
+        :disabled="false"
+    />
+
+    <!-- Фото автора -->
+    <label>Фото автора</label>
+    <img id="image" src="{{ $edit->photo ? asset('storage/' . $edit->photo) : '' }}" class="mb-3" alt="Image Preview" />
+
+    <div class="image-container" id="image-container">
+        <div class="image-preview" id="image-preview" style="display: none; position: relative;">
+            <img id="image" src="" alt="Image Preview" />
+            <span class="change-photo-text" style="display: none;">Изменить фото</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="file" class="form-control" name="photo" id="file-input" accept="image/*">
+        <button type="button" id="crop-button" class="badge bg-primary p-2" style="display: none">Обрезать</button>
+    </div>
+
+    <!-- Контейнер для обрезанного изображения -->
+    <div id="cropped-result" style="display: none;">
+        <img id="cropped-image" src="" alt="Cropped Image" class="mb-1"/>
+        <button type="button" id="change-photo" class="badge bg-primary p-2 mb-2" style="display: none">Загрузить новое фото</button>
+    </div>
+
+    <!-- Описание автора -->
+    <div class="from-group">
+        <textarea name="description" class="form-control mb-3" cols="10" rows="5">{{ $edit->description }}</textarea>
+    </div>
+
+    <x-button type="submit" class="btn btn-primary" text="Сохранить" position="end"/>
+</x-form>
