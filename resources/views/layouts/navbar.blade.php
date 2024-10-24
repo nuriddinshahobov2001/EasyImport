@@ -47,6 +47,7 @@
                                 icon="fas fa-book"
                                 label="Книги"
                             />
+                            <li class="nav-header">Настройка маркетинга</li>
                             <x-nav-item
                                 main-url="{{ route('category.index') }}"
                                 :check-urls="['category', 'category/*']"

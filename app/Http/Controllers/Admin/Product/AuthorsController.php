@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Product;
 use App\Http\Controllers\Controller;
 use App\Models\AuthorModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AuthorsController extends Controller
 {
@@ -34,8 +35,9 @@ class AuthorsController extends Controller
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
             $authorName = $request->input('name');
-            $fileName = $authorName . '.' . $file->getClientOriginalExtension();
-            $filePath = $file->storeAs('public/uploads/authors', $fileName);
+            $sluggedName = Str::slug($authorName, '_');
+            $fileName = $sluggedName . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('uploads/authors', $fileName);
             AuthorModel::create([
                 'name' => $authorName,
                 'photo' => $filePath,
@@ -44,7 +46,7 @@ class AuthorsController extends Controller
         } else {
             AuthorModel::create([
                 'name' => $request->name,
-                'photo' => 'default.png',
+                'photo' => 'uploads/authors/default.png',
                 'description' => $request->description ?? null
             ]);
         }

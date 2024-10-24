@@ -118,12 +118,12 @@
                                 :showIcon="false"
                                 :required="true"
                                 :value="$author->name"
-                                :disabled="false"/>
+                                :disabled="true"/>
 
                             <label for="file-input">Фото автора</label>
                             <img id="image-author" src="{{($author->photo === null) ? '' : asset('storage/' . $author->photo) }}" class="mb-3" alt="Image Preview" />
                             <div class="from-group">
-                                <textarea name="description" class="form-control mb-3" id="" cols="10" rows="5">{{ $author->description }}</textarea>
+                                <textarea disabled="" name="description" class="form-control mb-3" id="" cols="10" rows="5">{{ $author->description }}</textarea>
                             </div>
                             <a href="{{ route('author.index') }}" class="btn btn-secondary">Отмена</a>
                         @endif
