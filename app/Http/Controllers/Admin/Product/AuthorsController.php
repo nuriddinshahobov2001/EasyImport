@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Product;
 use App\Http\Controllers\Controller;
 use App\Models\AuthorModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class AuthorsController extends Controller
@@ -32,24 +33,28 @@ class AuthorsController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('photo')) {
+        $authorName = $request->input('name');
+        $description = $request->input('description');
+        $defaultPhotoPath = 'uploads/authors/default.png';
+
+        if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
             $file = $request->file('photo');
-            $authorName = $request->input('name');
             $sluggedName = Str::slug($authorName, '_');
-            $fileName = $sluggedName . '.' . $file->getClientOriginalExtension();
-            $filePath = $file->storeAs('uploads/authors', $fileName);
-            AuthorModel::create([
-                'name' => $authorName,
-                'photo' => $filePath,
-                'description' => $request->description ?? null
-            ]);
+            $fileName = $sluggedName . '_' . time() . '.' . $file->getClientOriginalExtension();
+
+            $filePath = $file->storeAs('uploads/authors', $fileName, 'public');
         } else {
-            AuthorModel::create([
-                'name' => $request->name,
-                'photo' => 'uploads/authors/default.png',
-                'description' => $request->description ?? null
-            ]);
+            // Если фото не загружено, используем фото по умолчанию
+            $filePath = $defaultPhotoPath;
         }
+
+        // Создаем запись автора в базе данных
+        AuthorModel::create([
+            'name' => $authorName,
+            'photo' => $filePath,
+            'description' => $description
+        ]);
+
         return back()->with(['success' => 'Автор успешно сохранен']);
     }
 
@@ -76,16 +81,59 @@ class AuthorsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+
+        public function update(Request $request, $id)
     {
-        //
+        // Находим автора по ID
+        $author = AuthorModel::findOrFail($id);
+
+        // Получаем новые значения из запроса
+        $authorName = $request->input('name', $author->name);
+        $description = $request->input('description', $author->description);
+
+        // Проверяем, загружено ли новое фото
+        if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+            $file = $request->file('photo');
+
+            // Генерируем уникальное имя файла
+            $sluggedName = Str::slug($authorName, '_');
+            $fileName = $sluggedName . '_' . time() . '.' . $file->getClientOriginalExtension();
+
+            // Сохраняем новое фото и получаем его путь
+            $filePath = $file->storeAs('uploads/authors', $fileName, 'public');
+
+            // Удаляем старое фото, если оно не является фото по умолчанию
+            if ($author->photo && $author->photo !== 'uploads/authors/default.png') {
+                Storage::disk('public')->delete($author->photo);
+            }
+        } else {
+            // Если фото не загружено, сохраняем старое фото
+            $filePath = $author->photo;
+        }
+
+        // Обновляем информацию об авторе
+        $author->update([
+            'name' => $authorName,
+            'photo' => $filePath,
+            'description' => $description
+        ]);
+
+        return redirect()->route('author.index')->with(['success' => 'Информация об авторе успешно обновлена']);
     }
+
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $author = AuthorModel::findOrFail($id);
+        if ($author->photo && $author->photo !== 'uploads/authors/default.png') {
+            Storage::delete($author->photo);
+        }
+        $author->delete();
+        return redirect()->route('author.index')->with('success', 'Автор успешно удален');
     }
+
 }

@@ -49,16 +49,22 @@
                             />
                             <li class="nav-header">Настройка маркетинга</li>
                             <x-nav-item
+                                main-url="{{ route('author.index') }}"
+                                :check-urls="['author', 'author/*']"
+                                icon="fas fa-book-medical"
+                                label="Авторы книг"
+                            />
+                            <x-nav-item
                                 main-url="{{ route('category.index') }}"
                                 :check-urls="['category', 'category/*']"
                                 icon="fas fa-bookmark"
                                 label="Категория книг"
                             />
                             <x-nav-item
-                                main-url="{{ route('author.index') }}"
-                                :check-urls="['author', 'author/*']"
-                                icon="fas fa-book-medical"
-                                label="Авторы книг"
+                                main-url="{{ route('tags.index') }}"
+                                :check-urls="['tags', 'tags/*']"
+                                icon="fas fa-tags"
+                                label="Теги для книги"
                             />
                             <li class="nav-header">Пользватель</li>
                             <x-nav-item
@@ -72,6 +78,12 @@
                                 :check-urls="['role', 'role/*']"
                                 icon="fas fa-book-reader"
                                 label="Роль"
+                            />
+                            <x-nav-item
+                                main-url="{{ route('logout') }}"
+                                :check-urls="['logout', 'logout/*']"
+                                icon="fas fa-door-open"
+                                label="Выход"
                             />
                         </ul>
                     </nav>

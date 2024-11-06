@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Product\AuthorsController;
 use App\Http\Controllers\Admin\Product\CategoryController;
 use App\Http\Controllers\Admin\Product\ProductController;
+use App\Http\Controllers\Admin\Product\TagsController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -67,6 +68,14 @@ Route::middleware(['role:admin'])->group(function () {
         Route::delete('/author/edit/{id}', [AuthorsController::class, 'destroy'])->name('delete');
     });
 
+    Route::group(['as' => 'tags.'], function () {
+        Route::get('/tags', [TagsController::class, 'index'])->name('index');
+        Route::post('/tags/store', [TagsController::class, 'store'])->name('store');
+        Route::get('/tags/show/{id}', [TagsController::class, 'show'])->name('show');
+        Route::get('/tags/edit/{id}', [TagsController::class, 'edit'])->name('edit');
+        Route::patch('/tags/update/{id}', [TagsController::class, 'update'])->name('update');
+        Route::delete('/tags/delete/{id}', [TagsController::class, 'destroy'])->name('delete');
+    });
 
 });
 
