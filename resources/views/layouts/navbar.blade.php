@@ -15,10 +15,10 @@
         <div class="os-size-auto-observer observed" style="height: calc(100% + 1px); float: left;">
             <div class="os-resize-observer"></div>
         </div>
-        <div class="os-content-glue" style="margin: 0px -8px;"></div>
+        <div class="os-content-glue" style="margin: 0 -8px;"></div>
         <div class="os-padding">
             <div class="os-viewport os-viewport-native-scrollbars-invisible" style="overflow-y: scroll;">
-                <div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
+                <div class="os-content" style="padding: 0 8px; height: 100%; width: 100%;">
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
@@ -41,31 +41,9 @@
                                 label="Дашбоард"
                             />
                             <li class="nav-header">Маркетинг</li>
-                            <x-nav-item
-                                main-url="{{ route('product.index') }}"
-                                :check-urls="['product', 'product/*']"
-                                icon="fas fa-book"
-                                label="Книги"
-                            />
+
                             <li class="nav-header">Настройка маркетинга</li>
-                            <x-nav-item
-                                main-url="{{ route('author.index') }}"
-                                :check-urls="['author', 'author/*']"
-                                icon="fas fa-book-medical"
-                                label="Авторы книг"
-                            />
-                            <x-nav-item
-                                main-url="{{ route('category.index') }}"
-                                :check-urls="['category', 'category/*']"
-                                icon="fas fa-bookmark"
-                                label="Категория книг"
-                            />
-                            <x-nav-item
-                                main-url="{{ route('tags.index') }}"
-                                :check-urls="['tags', 'tags/*']"
-                                icon="fas fa-tags"
-                                label="Теги для книги"
-                            />
+
                             <li class="nav-header">Пользватель</li>
                             <x-nav-item
                                 main-url="{{ route('user.index') }}"

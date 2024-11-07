@@ -48,35 +48,6 @@ Route::middleware(['role:admin'])->group(function () {
         Route::post('/users/destroy/{id}', [UsersController::class, 'destroy'])->name('delete');
     });
 
-    Route::group(['as' => 'product.'], function () {
-        Route::get('/product', [ProductController::class, 'index'])->name('index');
-        Route::get('/product/create', [ProductController::class, 'create'])->name('create');
-    });
-
-    Route::group(['as' => 'category.'], function () {
-        Route::get('/category', [CategoryController::class, 'index'])->name('index');
-        Route::get('/category/create', [CategoryController::class, 'create'])->name('create');
-    });
-
-    Route::group(['as' => 'author.'], function () {
-        Route::get('/author', [AuthorsController::class, 'index'])->name('index');
-        Route::get('/author/create', [AuthorsController::class, 'create'])->name('create');
-        Route::post('/author/store', [AuthorsController::class, 'store'])->name('store');
-        Route::get('/author/show/{id}', [AuthorsController::class, 'show'])->name('show');
-        Route::get('/author/edit/{id}', [AuthorsController::class, 'edit'])->name('edit');
-        Route::patch('/author/update/{id}', [AuthorsController::class, 'update'])->name('update');
-        Route::delete('/author/edit/{id}', [AuthorsController::class, 'destroy'])->name('delete');
-    });
-
-    Route::group(['as' => 'tags.'], function () {
-        Route::get('/tags', [TagsController::class, 'index'])->name('index');
-        Route::post('/tags/store', [TagsController::class, 'store'])->name('store');
-        Route::get('/tags/show/{id}', [TagsController::class, 'show'])->name('show');
-        Route::get('/tags/edit/{id}', [TagsController::class, 'edit'])->name('edit');
-        Route::patch('/tags/update/{id}', [TagsController::class, 'update'])->name('update');
-        Route::delete('/tags/delete/{id}', [TagsController::class, 'destroy'])->name('delete');
-    });
-
 });
 
 

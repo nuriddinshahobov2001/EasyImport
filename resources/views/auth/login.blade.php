@@ -14,9 +14,9 @@
 @section('auth')
     <div class="login-box">
         <!-- /.login-logo -->
-        <div class="card card-outline card-primary">
+        <div class="card card-outline card-success">
             <div class="card-header text-center">
-                <a href="#" class="h1"><b>Kitob</b>TJ</a>
+                <a href="#" class="h1 text-success"><b>Easy</b>Import</a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Введите логин и пароль</p>
