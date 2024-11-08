@@ -41,7 +41,18 @@
                                 label="Дашбоард"
                             />
                             <li class="nav-header">Маркетинг</li>
-
+                            <x-nav-item
+                                main-url="{{ route('sale.index') }}"
+                                :check-urls="['sale', 'sale/*']"
+                                icon="fas fa-dollar-sign"
+                                label="Продажа"
+                            />
+                            <x-nav-item
+                                main-url="{{ route('admission.index') }}"
+                                :check-urls="['admission', 'admission/*']"
+                                icon="fas fa-caravan"
+                                label="поступление"
+                            />
                             <li class="nav-header">Настройка маркетинга</li>
 
                             <li class="nav-header">Пользватель</li>

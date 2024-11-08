@@ -1,24 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\Admission\AdmissionController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\Product\AuthorsController;
-use App\Http\Controllers\Admin\Product\CategoryController;
-use App\Http\Controllers\Admin\Product\ProductController;
-use App\Http\Controllers\Admin\Product\TagsController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\Sale\SaleController;
 use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('auth.login');
@@ -48,6 +36,25 @@ Route::middleware(['role:admin'])->group(function () {
         Route::post('/users/destroy/{id}', [UsersController::class, 'destroy'])->name('delete');
     });
 
+    Route::group(['as' => 'sale.'], function () {
+        Route::get('/sale', [SaleController::class, 'index'])->name('index');
+        Route::post('/sale/store', [SaleController::class, 'store'])->name('store');
+        Route::get('/sale/show/{id}', [SaleController::class, 'show'])->name('show');
+        Route::get('/sale/create', [SaleController::class, 'create'])->name('create');
+        Route::get('/sale/edit/{id}', [SaleController::class, 'edit'])->name('edit');
+        Route::patch('/sale/update/{id}', [SaleController::class, 'update'])->name('update');
+        Route::delete('/sale/destroy/{id}', [SaleController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['as' => 'admission.'], function () {
+        Route::get('/admission', [AdmissionController::class, 'index'])->name('index');
+        Route::post('/admission/store', [AdmissionController::class, 'store'])->name('store');
+        Route::get('/admission/show/{id}', [AdmissionController::class, 'show'])->name('show');
+        Route::get('/admission/create', [AdmissionController::class, 'create'])->name('create');
+        Route::get('/admission/edit/{id}', [AdmissionController::class, 'edit'])->name('edit');
+        Route::patch('/admission/update/{id}', [AdmissionController::class, 'update'])->name('update');
+        Route::delete('/admission/destroy/{id}', [AdmissionController::class, 'destroy'])->name('delete');
+    });
 });
 
 
