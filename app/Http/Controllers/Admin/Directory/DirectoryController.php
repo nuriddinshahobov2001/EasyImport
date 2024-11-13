@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Admission;
+namespace App\Http\Controllers\Admin\Directory;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdmissionController extends Controller
+class DirectoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.admission.index');
+        //
     }
 
     /**
@@ -20,7 +20,7 @@ class AdmissionController extends Controller
      */
     public function create()
     {
-        return view('admin.admission.create');
+        //
     }
 
     /**

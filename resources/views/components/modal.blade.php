@@ -1,4 +1,4 @@
-<div class="modal fade" id="{{ $id }}"  aria-modal="true" role="dialog">
+<div class="modal fade" id="{{ $id }}"  aria-modal="true" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-{{ $size }}">
         <div class="modal-content">
             <div class="modal-header">
@@ -13,8 +13,7 @@
                 {{ $slot }}
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelButton">Отмена</button>
             </div>
         </div>
         <!-- /.modal-content -->
