@@ -14,3 +14,10 @@
 
 @section('js-links')
 @endsection
+
+//    "repositories": [
+//        {
+//            "type": "path",
+//            "url": "C:/Users/N_Shakhobov/Desktop/laravel-make-view"
+//        }
+//    ]
