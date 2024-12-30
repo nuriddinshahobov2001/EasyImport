@@ -29,7 +29,14 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $role = Auth::user()->getRoleNames()[0] ?? null;
+
+        return match ($role) {
+            'admin' => redirect()->intended(RouteServiceProvider::HOME),
+            'manager' => redirect()->intended(RouteServiceProvider::MN_HOME),
+            'user' => redirect()->intended(RouteServiceProvider::USER_HOME),
+            default => redirect()->back()->with('error', 'У вас нет доступ'),
+        };
     }
 
     /**

@@ -23,7 +23,7 @@
                 <x-alerts/>
                 <x-form method="POST" action="{{ route('login') }}" :multipart="false">
                     @csrf
-                    <x-input id="login" type="login" name="login" placeholder="Enter your Email or Login" icon="fas fa-envelope" :showIcon="true" label="" :required="true" :disabled="false"/>
+                    <x-input id="login" type="text" name="login" placeholder="Enter your Email or Login" icon="fas fa-envelope" :showIcon="true" label="" :required="true" :disabled="false"/>
                     <x-input id="password" type="password" name="password" placeholder="Enter your password" icon="fas fa-lock" :showIcon="true" label="" :required="true" :disabled="false"/>
                     <x-button type="submit" class="btn btn-primary" text="Вход" position="end"/>
                 </x-form>

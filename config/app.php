@@ -185,6 +185,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Zintel\LaravelViewMaker\LaravelViewMakerServiceProvider::class,
         /*
          * Application Service Providers...
          */

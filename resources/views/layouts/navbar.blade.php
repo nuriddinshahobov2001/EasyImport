@@ -54,7 +54,12 @@
                                 label="поступление"
                             />
                             <li class="nav-header">Настройка маркетинга</li>
-
+                            <x-nav-item
+                                main-url="{{ route('category.index') }}"
+                                :check-urls="['category', 'category/*']"
+                                icon="fas fa-th"
+                                label="Категория"
+                            />
                             <li class="nav-header">Пользватель</li>
                             <x-nav-item
                                 main-url="{{ route('user.index') }}"
@@ -62,12 +67,12 @@
                                 icon="fas fa-users"
                                 label="Пользователи"
                             />
-                            <x-nav-item
-                                main-url="{{ route('role.index') }}"
-                                :check-urls="['role', 'role/*']"
-                                icon="fas fa-book-reader"
-                                label="Роль"
-                            />
+{{--                            <x-nav-item--}}
+{{--                                main-url="{{ route('role.index') }}"--}}
+{{--                                :check-urls="['role', 'role/*']"--}}
+{{--                                icon="fas fa-book-reader"--}}
+{{--                                label="Роль"--}}
+{{--                            />--}}
                             <x-nav-item
                                 main-url="{{ route('logout') }}"
                                 :check-urls="['logout', 'logout/*']"

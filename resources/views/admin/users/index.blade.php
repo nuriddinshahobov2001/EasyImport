@@ -18,9 +18,9 @@
         <div class="card">
             <div class="card-body">
                 <x-data-table
-                    :headers="['ID', 'Имя','Действия']"
+                    :headers="['ID', 'Имя','Роль','Действия']"
                     :model="$users"
-                    :fields="['id', 'name',]"
+                    :fields="['id', 'name', 'role']"
                     :action="true"
                     :icons="['fas fa-eye', 'fas fa-edit', 'fas fa-trash']"
                     :routes="['user.show', 'user.edit', 'user.delete']"

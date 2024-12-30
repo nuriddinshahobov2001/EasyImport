@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\User\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
@@ -11,7 +11,13 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::with('roles')->get()->map(function ($user) {
+            return [
+                'id' => $user->id,
+                'name' => $user->name,
+                'role' => $user->roles->first()->name ?? 'Без роли',
+            ];
+        });
         return view('admin.users.index', compact('users'));
     }
 

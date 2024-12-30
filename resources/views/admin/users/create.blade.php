@@ -24,18 +24,18 @@
                         <div class="col-6">
                             <x-input label="Имя пользователя" id="name" type="text" name="name"
                                      placeholder="Имя пользователя" icon="fas fa-envelope" :showIcon="false"
-                                     :required="true"/>
+                                     :required="true" :disabled="false"/>
                         </div>
                         <div class="col-6">
                             <x-input label="Email пользователя" id="email" type="email" name="email"
                                      placeholder="Email пользователя" icon="fas fa-envelope" :showIcon="false"
-                                     :required="true"/>
+                                     :required="true" :disabled="false"/>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
                             <x-input label="Пароль" id="password" type="password" name="password" placeholder="Пароль"
-                                     icon="fas fa-lock" :showIcon="false" :required="true"/>
+                                     icon="fas fa-lock" :showIcon="false" :required="true" :disabled="false"/>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
