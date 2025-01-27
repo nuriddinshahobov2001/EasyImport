@@ -54,7 +54,7 @@ class CategoryController extends Controller
             $data = $request->validated();
             $category = Category::findOrFail($id);
             $category->update($data);
-            return redirect()->route('category.index')->with('success', 'Категория успешно обновлена');
+            return redirect()->route('category.index')->with('info', 'Категория успешно обновлена');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Ошибка при обновлении категории: ' . $e->getMessage());
         }

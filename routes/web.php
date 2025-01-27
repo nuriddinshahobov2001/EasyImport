@@ -3,8 +3,11 @@
 use App\Http\Controllers\Admin\Admission\AdmissionController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
+use App\Http\Controllers\Admin\ProductList\ProductListController;
 use App\Http\Controllers\Admin\Role\RoleController;
 use App\Http\Controllers\Admin\Sale\SaleController;
+use App\Http\Controllers\Admin\Tags\TagsController;
+use App\Http\Controllers\Admin\Units\UnitsController;
 use App\Http\Controllers\Admin\User\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,10 +64,32 @@ Route::middleware(['role:admin'])->group(function () {
     Route::resource('category', CategoryController::class)->names([
         'index' => 'category.index',
         'store' => 'category.store',
-        'show' => 'category.show',
         'edit' => 'category.edit',
         'update' => 'category.update',
         'destroy' => 'category.delete',
+    ]);
+    Route::resource('tags', TagsController::class)->names([
+        'index' => 'tag.index',
+        'store' => 'tag.store',
+        'edit' => 'tag.edit',
+        'update' => 'tag.update',
+        'destroy' => 'tag.delete',
+    ]);
+
+    Route::resource('units', UnitsController::class)->names([
+        'index' => 'units.index',
+        'store' => 'units.store',
+        'edit' => 'units.edit',
+        'update' => 'units.update',
+        'destroy' => 'units.delete',
+    ]);
+
+    Route::resource('products', ProductListController::class)->names([
+        'index' => 'products.index',
+        'store' => 'products.store',
+        'edit' => 'products.edit',
+        'update' => 'products.update',
+        'destroy' => 'products.delete',
     ]);
 });
 

@@ -60,6 +60,24 @@
                                 icon="fas fa-th"
                                 label="Категория"
                             />
+                            <x-nav-item
+                                main-url="{{ route('tag.index') }}"
+                                :check-urls="['tags', 'tags/*']"
+                                icon="fas fa-tags"
+                                label="Теги"
+                            />
+                            <x-nav-item
+                                main-url="{{ route('units.index') }}"
+                                :check-urls="['units', 'units/*']"
+                                icon="fas fa-cubes"
+                                label="Единицы измерения"
+                            />
+                            <x-nav-item
+                                main-url="{{ route('products.index') }}"
+                                :check-urls="['products', 'products/*']"
+                                icon="fas fa-coins"
+                                label="Список продуктов"
+                            />
                             <li class="nav-header">Пользватель</li>
                             <x-nav-item
                                 main-url="{{ route('user.index') }}"

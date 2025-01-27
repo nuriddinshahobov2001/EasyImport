@@ -1,5 +1,5 @@
-<div class="modal fade" id="{{ $id }}"  aria-modal="true" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog modal-{{ $size }}">
+<div class="modal fade" id="{{ $id }}"  aria-modal="true" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" >
+    <div class="modal-dialog modal-{{ $size }}" >
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{ $title }}</h4>
@@ -9,7 +9,7 @@
                     </button>
                 @endif
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 600px; overflow: auto">
                 {{ $slot }}
             </div>
             <div class="modal-footer justify-content-between">

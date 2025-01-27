@@ -3,16 +3,16 @@
 @extends('layouts.app')
 
 @section('title')
-    Категория
+    Единицы измерения
 @endsection
 
 @section('css-links')
 @endsection
 
 @section('main')
-    <x-page-header title="Категория" :breadcrumbs="[
+    <x-page-header title="Единицы измерения" :breadcrumbs="[
         ['name' => 'Дашбоард', 'url' => route('dashboard.index')],
-        ['name' => 'Категория', 'url' => route('category.index')],
+        ['name' => 'Единицы измерения', 'url' => route('units.index')],
     ]"/>
 
     <section class="content">
@@ -22,38 +22,32 @@
                 <div class="row">
                     <div class="col-7">
                         <x-data-table
-                            :headers="['ID', 'Имя','Описания','Действия']"
-                            :model="$categories"
-                            :fields="['id', 'name','description']"
+                            :headers="['ID', 'Имя','Действия']"
+                            :model="$units"
+                            :fields="['id', 'name']"
                             :action="true"
                             :icons="['fas fa-edit', 'fas fa-trash']"
-                            :routes="['category.edit', 'category.delete']"
+                            :routes="['units.edit', 'units.delete']"
                         />
                     </div>
                     <div class="col-5">
-                        @if(!isset($categoryEdit))
-                            Новая категория
-                            <x-form method="POST" action="{{ route('category.store') }}" :multipart="false">
+                        @if(!isset($unitsEdit))
+                            Новая единица
+                            <x-form method="POST" action="{{ route('units.store') }}" :multipart="false">
                                 @csrf
                                 <x-input label="Имя" id="name" type="text" name="name"
                                          placeholder="Введите имя" icon="fas fa-envelope" :showIcon="false"
                                          :required="true" :disabled="false"/>
-                                <x-input label="Описания" id="description" type="text" name="description"
-                                         placeholder="Введите описания" icon="fas fa-envelope" :showIcon="false"
-                                         :required="false" :disabled="false"/>
                                 <x-button type="submit" class="btn btn-primary" text="Сохранить" position="end"/>
                             </x-form>
                         @endif
-                        @if(isset($categoryEdit))
-                            <x-form method="POST" action="{{ route('category.update', $categoryEdit->id) }}" :multipart="false">
+                        @if(isset($unitsEdit))
+                            <x-form method="POST" action="{{ route('units.update', $unitsEdit->id) }}" :multipart="false">
                                 @csrf
                                 @method('PATCH')
                                 <x-input label="Имя" id="name" type="text" name="name"
                                          placeholder="Введите имя" icon="fas fa-envelope" :showIcon="false"
-                                         :required="true" :disabled="false" :value="$categoryEdit->name"/>
-                                <x-input label="Описания" id="description" type="text" name="description"
-                                         placeholder="Введите описания" icon="fas fa-envelope" :showIcon="false"
-                                         :required="false" :disabled="false" :value="$categoryEdit->description"/>
+                                         :required="true" :disabled="false" :value="$unitsEdit->name"/>
                                 <x-button type="submit" class="btn btn-primary" text="Сохранить" position="end"/>
                             </x-form>
                         @endif

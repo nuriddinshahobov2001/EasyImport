@@ -77,7 +77,6 @@
             </div>
             @csrf
 
-            <x-button type="submit" class="btn btn-primary" text="Вход" position="end"/>
         </x-form>
 
     </section>
